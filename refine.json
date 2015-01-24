@@ -1,0 +1,138 @@
+[
+  {
+    "op": "core/column-removal",
+    "description": "Remove column 2010",
+    "columnName": "2010"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Column to 2010",
+    "oldColumnName": "Column",
+    "newColumnName": "2010"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Column2",
+    "columnName": "Column2"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Column3",
+    "columnName": "Column3"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column 2013",
+    "columnName": "2013"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Column4 to 2013",
+    "oldColumnName": "Column4",
+    "newColumnName": "2013"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column 2014",
+    "columnName": "2014"
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column Column5 to 2014",
+    "oldColumnName": "Column5",
+    "newColumnName": "2014"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "facets": [
+        {
+          "expression": "row.flagged",
+          "invert": false,
+          "selectError": false,
+          "omitError": false,
+          "name": "Flagged Rows",
+          "selectBlank": false,
+          "columnName": "",
+          "omitBlank": false,
+          "type": "list",
+          "selection": [
+            {
+              "v": {
+                "v": true,
+                "l": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "mode": "row-based"
+    }
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Bezirksname at index 1 based on column Stadtbezirk using expression grel:replace(value,/[0-9]*/,\"\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "newColumnName": "Bezirksname",
+    "columnInsertIndex": 1,
+    "baseColumnName": "Stadtbezirk",
+    "expression": "grel:replace(value,/[0-9]*/,\"\")",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Stadtbezirk using expression grel:replace(value,/\\D/,\"\")",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "Stadtbezirk",
+    "expression": "grel:replace(value,/\\D/,\"\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column Stadtbezirk using expression value.toNumber()",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "Stadtbezirk",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column 2011 using expression grel:replace(value,'r','')",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "2011",
+    "expression": "grel:replace(value,'r','')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column 2011 using expression value.toNumber()",
+    "engineConfig": {
+      "facets": [],
+      "mode": "record-based"
+    },
+    "columnName": "2011",
+    "expression": "value.toNumber()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10
+  }
+]
